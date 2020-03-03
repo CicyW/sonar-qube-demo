@@ -1,6 +1,6 @@
 目的：利用 docker 本地搭建的sonarqube和jenkins 环境，使用sonarqube + jenkins 对maven项目的单元测试，集成测试，代码扫描等进行质量监控管理
 
-##环境准备：
+## 环境准备
 1. 安装docker 
 2. 拉取sonarqube和jenkins镜像
 
@@ -13,9 +13,9 @@
     docker pull registry.cn-hangzhou.aliyuncs.com/cicddraft/sonarqube:7.8-community 
     ```
 
-##Maven项目使用sonarqube
+## Maven项目使用sonarqube
 
-###安装sonarqube
+### 安装sonarqube
 1. 启动sonarqube:
 
     ```
@@ -27,7 +27,7 @@
 2. 浏览器中访问： http://localhost:9000 进入 sonarqube 页面
 
 
-###在maven 项目中使用sonar
+### 在maven 项目中使用sonar
 1. 在项目根目录的pom.xml文件加入如下配置，引入jacoco插件
     ```
     <build>
@@ -69,7 +69,7 @@
    ```
 3. 执行完后，再次回到浏览器中访问： http://localhost:9000
 
-##在jenkins pipeline中使用sonarqube
+## 在jenkins pipeline中使用sonarqube
 
 ### jenkins环境搭建
 1. 启动jenkins
