@@ -131,3 +131,13 @@ docker run -d -m=4g --restart=always --name tw-sonarqube -p 9000:9000 registry.c
 ```
 
 > 补充pipeline示例，或 Jenkinsfile_v3
+
+- 在sonarqube上配置 webhooks 信息,以便将质量结果消息返回给jenins
+
+"Administration" -> "Configuration" -> "Webhooks" -> "Create"
+
+|    key    |    value   | Note  |
+|:-----------|-----------|---------|
+|    Name   | jenkins-server | 随意取名  |
+|	 URL    | `http://<JENKINS_URL/sonarqube-webhook/`	|   sonarqube的地址  |        |
+
