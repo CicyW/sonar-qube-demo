@@ -1,7 +1,7 @@
 pipeline {
-    agent any
+    agent { docker 'maven:3.3.3' }
     stages {
-        stage("Compile") {
+        stage("build") {
             steps {
                     sh "mvn clean install"
             }
@@ -9,7 +9,13 @@ pipeline {
 
         stage('Sonar-Scan') {
             steps {
-                sh "/usr/local/bin/mvn sonar:sonar"
+                sh '''
+                BRIDGES_IP=`/sbin/ip route|awk '/default/ { print $3 }'`
+                mvn sonar:sonar \
+                -Dsonar.host.url=http://${BRIDGES_IP}:9000 \
+                -Dsonar.login=admin  \
+                -Dsonar.password=admin
+                '''
             }
         }
     }
@@ -21,4 +27,3 @@ pipeline {
         }
     }
 }
-

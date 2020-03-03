@@ -70,7 +70,7 @@ docker run -d -m=4g --restart=always --name tw-sonarqube -p 9000:9000 registry.c
     -Dsonar.password=admin -Dsonar.core.codeCoveragePlugin=jacoco -Dsonar.coverage.jacoco.xmlReportPaths=target/coverage-reports/jacoco.xml
    ```
 - 执行完后，再次回到浏览器中访问： http://localhost:9000
-
+![avatar](src/main/resources/images/Sonar_Home.jpg)
 ## 三、在jenkins pipeline中使用sonarqube
 
 ### 3.1 jenkins环境搭建
@@ -81,11 +81,14 @@ docker run -d -m=4g --restart=always --name tw-sonarqube -p 9000:9000 registry.c
     或者aliyun 镜像
     docker run -d --restart=always --name tw-jenkins -d -p 8081:8080 -v /var/run/docker.sock:/var/run/docker.sock registry.cn-hangzhou.aliyuncs.com/cicddraft/jenkins:v0.4
     ```
--  浏览器中访问： http://localhost:8081 进入 sonarqube 页面
+-  2. 浏览器中访问： http://localhost:8081 进入 jenkins 页面
 
 
 ### 3.2 利用pieline将质量报告推送到sonarqube
-> 补充pipeline 示例，或 Jenkinsfile_v2
+
+1. 浏览器进入：http://localhost:8081，在Manage Jenkins 模块安装SonarQube Scanner 以及Quality Gates插件
+![avatar](src/main/resources/images/Sonar_Plugins.jpg)
+2. 点击"jenkins" -> "New Item" -> 输入pipeline名称，选择"流水线(pipeline)" -> 点击OK-> 配置git仓库以及Jenkinsfile等信息，点击保存
 
 ### 3.3 当SonarQube quality 不通过时，jenkins job 标记为失败
 - 在Jenkins上安装插件 **sonar scaner**
